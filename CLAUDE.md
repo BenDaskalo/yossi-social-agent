@@ -1,100 +1,78 @@
 # יוסי סושיאל אייג'נט — הוראות לקלוד קוד
 
-## כשיוסי כותב "התקן" או "הגדר" או "setup"
+## פרומט ההתקנה הראשונית
 
-בצע את הצעדים הבאים **בסדר הזה**, בלי לשאול שאלות מיותרות:
+כשיוסי מדביק את פרומט ההתקנה, בצע **בדיוק** את הצעדים הבאים:
 
-### צעד 1 — בדוק Python
+### צעד 1 — מצא את הZIP בהורדות
+```bash
+find ~/Downloads -name "yossi-social-agent*.zip" | head -1
+```
+אם לא נמצא — אמור ליוסי: "לא מצאתי את הקובץ בתיקיית ההורדות. ודא שהורדת אותו ונסה שוב."
+
+### צעד 2 — חלץ לתיקיית הבית
+```bash
+unzip -o ~/Downloads/yossi-social-agent-main.zip -d ~/
+mv ~/yossi-social-agent-main ~/yossi-agent 2>/dev/null || true
+```
+
+### צעד 3 — בדוק Python
 ```bash
 python3 --version
 ```
-אם Python לא קיים — הגד ליוסי:
-"Python לא מותקן. הורד מ: https://www.python.org/downloads/ ואחרי ההתקנה כתוב שוב 'התקן'"
-ועצור.
+אם לא קיים — אמור: "Python לא מותקן. הורד מ: https://www.python.org/downloads/ ואחרי ההתקנה שלח 'מוכן'"
 
-### צעד 2 — התקן חבילות
+### צעד 4 — התקן חבילות
 ```bash
-pip3 install -r requirements.txt
+cd ~/yossi-agent && pip3 install -r requirements.txt --quiet
 ```
 
-### צעד 3 — בדוק אם .env קיים
-אם `.env` לא קיים — צור אותו מ-`.env.example`:
+### צעד 5 — הכן .env
 ```bash
-cp .env.example .env
+cp ~/yossi-agent/.env.example ~/yossi-agent/.env
 ```
 
-### צעד 4 — בדוק אם ANTHROPIC_API_KEY מוגדר
-פתח את `.env` ובדוק אם השורה `ANTHROPIC_API_KEY=` עדיין מכילה `your_anthropic_api_key_here`.
+### צעד 6 — שאל מפתח Anthropic
+אמור ליוסי בדיוק:
+"הכל מוכן ✅
+עכשיו צריך מפתח Anthropic אחד.
+כנס ל: https://console.anthropic.com/ → הירשם בחינם → API Keys → Create Key
+העתק את המפתח ושלח אותו כאן."
 
-אם כן — שאל את יוסי:
-"יוסי, תכניס את מפתח ה-Anthropic שלך (מתחיל ב-sk-ant-):"
-
-כשיוסי שולח את המפתח — הכנס אותו לקובץ `.env` בשורה `ANTHROPIC_API_KEY=`.
-
-### צעד 5 — הרץ את הסוכן
+כשיוסי שולח את המפתח — הכנס אותו לקובץ:
 ```bash
-python3 agent.py
+sed -i '' 's|ANTHROPIC_API_KEY=.*|ANTHROPIC_API_KEY=המפתח_שהוא_שלח|' ~/yossi-agent/.env
+```
+
+### צעד 7 — הרץ
+```bash
+cd ~/yossi-agent && python3 agent.py
 ```
 
 ---
 
-## כשיוסי כותב "הפעל" או "התחל" או "run"
+## פרומט הפעלה רגילה (לפעמות הבאות)
 
-אם `.env` קיים ו-`ANTHROPIC_API_KEY` מוגדר:
 ```bash
-python3 agent.py
+cd ~/yossi-agent && python3 agent.py
 ```
-
-אם לא — בצע "התקן" קודם.
 
 ---
 
-## כשיוסי כותב "עדכן"
+## פרומט עדכון
 
-משוך עדכונים ממקור הפרויקט:
 ```bash
-curl -L https://github.com/BenDaskalo/yossi-social-agent/archive/refs/heads/main.zip -o update.zip
-unzip -o update.zip "yossi-social-agent-main/agent.py" "yossi-social-agent-main/memory_manager.py" "yossi-social-agent-main/scraper.py" "yossi-social-agent-main/script_writer.py" "yossi-social-agent-main/requirements.txt" -d /tmp/
-cp /tmp/yossi-social-agent-main/*.py .
-rm -rf update.zip /tmp/yossi-social-agent-main
-pip3 install -r requirements.txt --quiet
-```
-הגד ליוסי: "✅ הסוכן עודכן. כתוב 'הפעל' כדי להמשיך."
-
----
-
-## כשיוסי כותב "מפתח חדש" או "שנה מפתח"
-
-שאל: "מה המפתח החדש?"
-כשהוא שולח — עדכן את `.env`:
-```python
-# update ANTHROPIC_API_KEY in .env
+curl -L https://github.com/BenDaskalo/yossi-social-agent/archive/refs/heads/main.zip -o ~/Downloads/update.zip
+unzip -o ~/Downloads/update.zip "yossi-social-agent-main/agent.py" "yossi-social-agent-main/memory_manager.py" "yossi-social-agent-main/scraper.py" "yossi-social-agent-main/script_writer.py" -d /tmp/
+cp /tmp/yossi-social-agent-main/*.py ~/yossi-agent/
+rm -rf ~/Downloads/update.zip /tmp/yossi-social-agent-main
 ```
 
 ---
 
 ## חוקי ברזל
 
-- **אף פעם לא** להציג את ה-API key בטקסט גלוי בשיחה
-- **תמיד** לאשר בסוף כל פעולה שהיא הצליחה לפני המעבר לצעד הבא
-- **אם משהו נכשל** — הסבר בעברית פשוטה מה קרה ומה לעשות
-- **שפה** — תמיד עברית עם יוסי
-
----
-
-## מבנה הפרויקט
-
-```
-yossi-social-agent/
-├── agent.py              ← הסוכן הראשי (מריצים אותו)
-├── memory_manager.py     ← ניהול זיכרון ולמידה
-├── scraper.py            ← סריקת אינסטגרם
-├── script_writer.py      ← כתיבת תסריטים
-├── memory/               ← כל הזיכרון (לא למחוק!)
-│   ├── profile.json
-│   ├── feedback.json
-│   ├── approved_scripts.json
-│   └── competitor_insights.json
-├── .env                  ← מפתחות API (לא לשתף!)
-└── requirements.txt
-```
+- לא להציג API key בטקסט גלוי
+- תמיד עברית עם יוסי
+- לאשר כל צעד לפני הבא
+- אם משהו נכשל — להסביר פשוט ומה לעשות
