@@ -1,0 +1,81 @@
+{
+  "last_updated": "2026-06-25",
+  "accounts_analyzed": [
+    {
+      "username": "noamavikasis",
+      "followers": 2515,
+      "avg_likes": 297,
+      "avg_comments": 23,
+      "top_posts": [
+        {"hook": "איי אייי מי חשב", "views": 21367, "likes": 1312, "duration_sec": 12, "pattern": "mystery_short"},
+        {"hook": "הסוד ללילות לבנים שלי", "views": 4502, "likes": 162, "pattern": "secret_personal"},
+        {"hook": "שלא יעבדו עליכם", "views": 2281, "likes": 105, "pattern": "warning_protection"}
+      ],
+      "key_insight": "וידאו קצר 12 שניות עם הוק מסתורי = הכי ויראלי. לא מסביר — מראה תוצאה ועוצר."
+    },
+    {
+      "username": "shir_uziel",
+      "followers": 4837,
+      "avg_likes": 194,
+      "avg_comments": 32,
+      "top_posts": [
+        {"hook": "אם הייתי צריכה לבחור את אתר השנה שלי", "views": 40496, "likes": 675, "duration_sec": 79, "pattern": "best_work_showcase"},
+        {"hook": "מה אומרים שווה את הכסף", "views": 29103, "likes": 470, "pattern": "value_challenge"},
+        {"hook": "מישהו אמר שאנימציות לא מתאימות למובייל נסכים שלא להסכים", "views": 19411, "likes": 200, "pattern": "myth_bust"},
+        {"hook": "שאלתם מלא מאיפה מביאים רעיונות", "likes": 1068, "type": "carousel", "pattern": "answer_audience_question"}
+      ],
+      "key_insight": "קרוסל שעונה על שאלת קהל = 1,068 לייקים. מיתוס בוסטינג + הוכחה = צפיות גבוהות."
+    },
+    {
+      "username": "shovalzanzuri",
+      "followers": 1612,
+      "avg_likes": 44,
+      "avg_comments": 13,
+      "top_posts": [
+        {"hook": "הסיפור מאחורי המיתוג של דקטלון", "views": 26873, "likes": 250, "pattern": "big_brand_story"},
+        {"hook": "בנקודה הזו לפני 5 שנים היה הדייט הראשון שלנו", "likes": 309, "type": "carousel", "pattern": "personal_story"}
+      ],
+      "key_insight": "ניתוח מותג גדול שכולם מכירים = ויראלי. סדרות ארוכות לא עובדות (50-120 צפיות בלבד)."
+    }
+  ],
+  "winning_patterns": [
+    {
+      "name": "mystery_short",
+      "description": "וידאו 10-15 שניות עם הוק מסתורי שלא מסביר כלום — רק מראה תוצאה",
+      "example": "איי אייי מי חשב",
+      "avg_views": 21000
+    },
+    {
+      "name": "myth_bust",
+      "description": "אתגור דעה קיימת בתחום עם הוכחה",
+      "example": "מישהו אמר שX לא עובד? נסכים שלא להסכים",
+      "avg_views": 19000
+    },
+    {
+      "name": "big_brand_story",
+      "description": "ניתוח מותג גדול שכולם מכירים + דעה אישית",
+      "example": "הסיפור מאחורי המיתוג של דקטלון",
+      "avg_views": 26000
+    },
+    {
+      "name": "value_challenge",
+      "description": "אתגור שאלת ערך — שווה את הכסף?",
+      "avg_views": 29000
+    },
+    {
+      "name": "answer_audience_question",
+      "description": "קרוסל שעונה על שאלה שהקהל שאל — מייצר שמירות",
+      "avg_likes": 1068
+    },
+    {
+      "name": "personal_story",
+      "description": "סיפור אישי אמיתי — מייצר אמון ותגובות",
+      "avg_likes": 250
+    }
+  ],
+  "what_doesnt_work": [
+    "סדרות ארוכות יומיות (50-120 צפיות בלבד)",
+    "תוכן גנרי ללא הוק חזק",
+    "הסברים ארוכים בלי פתיחה שעוצרת"
+  ]
+}
